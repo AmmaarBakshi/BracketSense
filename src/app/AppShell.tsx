@@ -8,7 +8,12 @@ import { NAV_ITEMS } from './nav'
 import { useSettings } from './settings'
 import { useUI } from './ui'
 import { isTypingTarget } from './keyboard'
+import type { LessonId } from '../learning/concepts'
+import { LESSON_BY_ID } from '../learning/lessons'
+import { visit } from '../learning/progress'
+import { useProgress } from './progress'
 import { HelpDialog } from './HelpDialog'
+import { IntroDialog } from './IntroDialog'
 import { ResetDialog } from './ResetDialog'
 import './AppShell.css'
 
@@ -199,9 +204,20 @@ export function PageLoading() {
   )
 }
 
+function visitLabel(pathname: string): string | null {
+  const lesson = pathname.match(/^\/learn\/([\w-]+)$/)
+  if (lesson) {
+    const l = LESSON_BY_ID[lesson[1] as LessonId]
+    return l ? `Lesson ${l.number}: ${l.title}` : null
+  }
+  if (pathname === '/') return null
+  return NAV_ITEMS.find((n) => n.to === pathname)?.label ?? null
+}
+
 export function AppShell() {
   const { pathname } = useLocation()
   const ui = useUI()
+  const { update } = useProgress()
   const mainRef = useRef<HTMLElement>(null)
   const firstRender = useRef(true)
 
@@ -214,6 +230,12 @@ export function AppShell() {
     }
     mainRef.current?.focus({ preventScroll: true })
   }, [pathname])
+
+  // Remember the last learning page for "Continue where you left off".
+  useEffect(() => {
+    const label = visitLabel(pathname)
+    if (label) update((p) => visit(p, pathname, label))
+  }, [pathname, update])
 
   // "?" opens Help from anywhere.
   useEffect(() => {
@@ -247,6 +269,7 @@ export function AppShell() {
       </main>
       <Footer />
       <HelpDialog />
+      <IntroDialog />
       <ResetDialog />
     </div>
   )

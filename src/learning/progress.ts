@@ -263,6 +263,20 @@ export function recordErrorFound(state: ProgressState): ProgressState {
   return { ...state, errorsFound: state.errorsFound + 1 }
 }
 
+/** Remember the last page for "Continue where you left off". */
+export function visit(state: ProgressState, path: string, label: string): ProgressState {
+  if (state.lastVisited?.path === path && state.lastVisited.label === label) return state
+  return { ...state, lastVisited: { path, label, at: new Date().toISOString() } }
+}
+
+export function markIntroSeen(state: ProgressState): ProgressState {
+  return state.introSeen ? state : { ...state, introSeen: true }
+}
+
+export function setVivaConfidence(state: ProgressState, cardId: string, level: Confidence): ProgressState {
+  return { ...state, viva: { ...state.viva, [cardId]: level } }
+}
+
 export function recordRun(state: ProgressState): ProgressState {
   return touchStreak({ ...state, runs: state.runs + 1 })
 }
