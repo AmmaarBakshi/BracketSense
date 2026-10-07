@@ -1,0 +1,67 @@
+.lab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.lab--compact {
+  gap: var(--sp-6);
+}
+
+.lab__part {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.lab__h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-lg);
+  margin: 0;
+}
+
+.lab__part > p {
+  margin: 0;
+}
+
+.lab__field {
+  min-width: 220px;
+}
+
+.lab__field--grow {
+  flex: 1;
+}
+
+.lab__run {
+  align-self: flex-end;
+}
+
+.lab__presets {
+  gap: 6px;
+}
+
+.lab__nums td {
+  font-variant-numeric: tabular-nums;
+}
+
+.lab__multiples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-4);
+}
+
+.lab__mini {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lab__mini figcaption {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
