@@ -173,8 +173,13 @@
   border: 1px solid var(--line);
 }
 
+.fix {
+  flex-wrap: wrap;
+}
+
 .fix__text {
-  flex: 1;
+  flex: 1 1 200px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -400,7 +405,15 @@
 
 @media (max-width: 900px) {
   .sandbox__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sandbox__side {
+    min-width: 0;
+  }
+
+  .sstats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .ppanel {
