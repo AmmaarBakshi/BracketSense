@@ -6,7 +6,7 @@ import './art.css'
 
 export function LogoMark({ size = 36 }: { size?: number }) {
   return (
-    <svg className="art" viewBox="0 0 48 48" width={size} height={size} aria-hidden="true" focusable="false">
+    <svg className="art" viewBox="0 0 48 48" width={size} height={size} style={{ width: size, height: size }} aria-hidden="true" focusable="false">
       <rect x="6" y="31" width="36" height="12" rx="4" className="f-curly" />
       <rect x="10" y="18" width="28" height="12" rx="4" className="f-square" />
       <rect x="14" y="5" width="20" height="12" rx="4" className="f-round" />
