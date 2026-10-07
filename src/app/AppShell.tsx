@@ -13,6 +13,7 @@ import { LESSON_BY_ID } from '../learning/lessons'
 import { visit } from '../learning/progress'
 import { useProgress } from './progress'
 import { HelpDialog } from './HelpDialog'
+import { PresentationMode } from './PresentationMode'
 import { IntroDialog } from './IntroDialog'
 import { ResetDialog } from './ResetDialog'
 import { VivaDrawer } from './VivaDrawer'
@@ -242,7 +243,7 @@ export function AppShell() {
   // "?" opens Help from anywhere.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === '?' && !isTypingTarget(e.target) && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      if (e.key === '?' && !ui.presentation.open && !isTypingTarget(e.target) && !e.ctrlKey && !e.metaKey && !e.altKey) {
         e.preventDefault()
         ui.openHelp()
       }
@@ -250,6 +251,9 @@ export function AppShell() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [ui])
+
+  // While Presentation Mode covers the screen, the page behind it is inert.
+  const covered = ui.presentation.open
 
   return (
     <div className="app">
@@ -263,13 +267,16 @@ export function AppShell() {
       >
         Skip to content
       </a>
-      <TopBar />
-      <main id="main" ref={mainRef} tabIndex={-1} className="app__main">
-        <Suspense fallback={<PageLoading />}>
-          <Outlet />
-        </Suspense>
-      </main>
-      <Footer />
+      <div className="app__page" inert={covered}>
+        <TopBar />
+        <main id="main" ref={mainRef} tabIndex={-1} className="app__main">
+          <Suspense fallback={<PageLoading />}>
+            <Outlet />
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
+      <PresentationMode />
       <HelpDialog />
       <IntroDialog />
       <VivaDrawer />
