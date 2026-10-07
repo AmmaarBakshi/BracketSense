@@ -36,6 +36,8 @@ const OP_LABEL: Record<string, string> = {
 
 export function StackView({ step, direction = 'jump', size = 'md', maxVisible = 30, positionOf, showIncoming = true, className, snapshot }: StackViewProps) {
   const [expanded, setExpanded] = useState(false)
+  // The popped block is a transient effect: drop it once its animation has played.
+  const [ghostDone, setGhostDone] = useState<number | null>(null)
   const snap = snapshot ?? step?.after
   const total = snap ? snap.size : 0
   const animate = direction === 'forward'
@@ -92,8 +94,15 @@ export function StackView({ step, direction = 'jump', size = 'md', maxVisible = 
 
       <div className={`stackview__well ${op === 'ERROR' && step?.error?.type === 'UNMATCHED_CLOSING' && animate ? 'is-shaking' : ''}`}>
         {/* popped block lifts away, with a green match burst */}
-        {op === 'POP' && animate && step?.top && (
-          <div className="stackview__ghost" key={`ghost-${step.step}`} aria-hidden="true">
+        {op === 'POP' && animate && step?.top && ghostDone !== step.step && (
+          <div
+            className="stackview__ghost"
+            key={`ghost-${step.step}`}
+            aria-hidden="true"
+            onAnimationEnd={(e) => {
+              if (e.animationName === 'bs-burst') setGhostDone(step.step)
+            }}
+          >
             <div className={`sblock sblock--${familyOf(step.top.char)} is-leaving`}>
               <span className="sblock__glyph">{step.top.char}</span>
               <span className="sblock__pair">
