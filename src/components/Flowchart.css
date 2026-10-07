@@ -1,0 +1,196 @@
+.flowchart {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: var(--r-md);
+  background: var(--surface-sunken);
+  border: 1px solid var(--line);
+}
+
+.flowchart__svg {
+  width: 100%;
+  min-width: 780px;
+  height: auto;
+  display: block;
+  font-family: var(--font-ui);
+}
+
+.flowchart--compact .flowchart__svg {
+  min-width: 640px;
+}
+
+/* edges */
+.fedge path {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  transition:
+    stroke var(--dur-med),
+    stroke-width var(--dur-med);
+}
+
+.fedge--trail path {
+  stroke: color-mix(in srgb, var(--brand) 42%, var(--line-strong));
+  stroke-width: 2.6;
+}
+
+.fedge--current path {
+  stroke: var(--brand);
+  stroke-width: 3.6;
+  stroke-dasharray: 9 5;
+  animation: fedge-flow 900ms linear infinite;
+}
+
+@keyframes fedge-flow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+.farrow {
+  fill: var(--line-strong);
+}
+
+.farrow--trail {
+  fill: color-mix(in srgb, var(--brand) 42%, var(--line-strong));
+}
+
+.farrow--current {
+  fill: var(--brand);
+}
+
+.fedge__label {
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  fill: var(--ink-2);
+}
+
+.fedge--current .fedge__label {
+  fill: var(--brand-text);
+}
+
+/* nodes */
+.fnode__shape {
+  stroke-width: 2;
+  transition:
+    fill var(--dur-med),
+    stroke var(--dur-med),
+    stroke-width var(--dur-med);
+}
+
+.fnode--terminal .fnode__shape {
+  fill: var(--surface-2);
+  stroke: var(--line-strong);
+}
+
+.fnode--process .fnode__shape {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+}
+
+.fnode--decision .fnode__shape {
+  fill: var(--surface);
+  stroke: color-mix(in srgb, var(--brand) 55%, var(--line-strong));
+}
+
+.fnode--error .fnode__shape {
+  fill: var(--error-soft);
+  stroke: color-mix(in srgb, var(--error-fill) 60%, var(--line-strong));
+}
+
+.fnode--success .fnode__shape {
+  fill: var(--success-soft);
+  stroke: color-mix(in srgb, var(--success-fill) 60%, var(--line-strong));
+}
+
+.fnode__label {
+  font-size: 12.5px;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  fill: var(--ink);
+}
+
+.fnode__sub {
+  font-size: 10.5px;
+  font-weight: 750;
+  fill: var(--ink-2);
+}
+
+.fnode--error .fnode__label,
+.fnode--error .fnode__sub {
+  fill: var(--error);
+}
+
+.fnode--success .fnode__label {
+  fill: var(--success);
+}
+
+.fnode.is-visited .fnode__shape {
+  stroke: color-mix(in srgb, var(--brand) 40%, var(--line-strong));
+}
+
+.fnode.is-path .fnode__shape {
+  stroke: var(--brand);
+  stroke-width: 2.6;
+  fill: var(--brand-soft);
+}
+
+.fnode.is-active .fnode__shape {
+  fill: var(--tier-soft);
+  stroke: var(--tier);
+  stroke-width: 3.6;
+}
+
+.fnode__halo {
+  fill: none;
+  stroke: var(--tier);
+  stroke-width: 3;
+  opacity: 0.35;
+  animation: fnode-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes fnode-pulse {
+  0%,
+  100% {
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* current character chip */
+.fchip__bg {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+  stroke-width: 2;
+}
+
+.fchip__bg--round {
+  fill: var(--round-soft);
+  stroke: var(--round);
+}
+
+.fchip__bg--square {
+  fill: var(--square-soft);
+  stroke: var(--square);
+}
+
+.fchip__bg--curly {
+  fill: var(--curly-soft);
+  stroke: var(--curly);
+}
+
+.fchip__bg--ignored {
+  fill: var(--ignored-soft);
+  stroke: var(--ignored);
+}
+
+.fchip__text {
+  font-family: var(--font-code);
+  font-size: 14px;
+  font-weight: 800;
+  fill: var(--ink);
+}
