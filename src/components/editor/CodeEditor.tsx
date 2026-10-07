@@ -196,8 +196,10 @@ export interface CodeEditorProps {
   /** Character currently being processed (highlighted). */
   current?: number | null
   errors?: readonly EditorMark[]
-  /** Show the primary error message as a tooltip and scroll it into view. */
+  /** Show the primary error message as a tooltip. */
   showErrorTooltip?: boolean
+  /** Scroll the primary error into view when it appears (default true). */
+  scrollToError?: boolean
   /** Bracket pair to highlight (from the matcher). */
   pair?: readonly number[] | null
   pairOk?: boolean
@@ -221,6 +223,7 @@ export function CodeEditor({
   current = null,
   errors,
   showErrorTooltip = false,
+  scrollToError = true,
   pair = null,
   pairOk = true,
   onBracketFocus,
@@ -320,12 +323,12 @@ export function CodeEditor({
     const effects: StateEffect<unknown>[] = [setRuntime.of(runtime)]
     const len = v.state.doc.length
     const primary = errs.find((e) => e.primary)
-    if (showErrorTooltip && primary && primary.index < len) effects.push(EditorView.scrollIntoView(primary.index, { y: 'center' }))
+    if (showErrorTooltip && scrollToError && primary && primary.index < len) effects.push(EditorView.scrollIntoView(primary.index, { y: 'center' }))
     else if (follow && current != null && current >= 0 && current < len) effects.push(EditorView.scrollIntoView(current, { y: 'nearest', yMargin: 48 }))
     v.dispatch({ effects })
     // errorsKey / pairKey capture the contents of errors / pair
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, errorsKey, showErrorTooltip, pairKey, pairOk, follow])
+  }, [current, errorsKey, showErrorTooltip, scrollToError, pairKey, pairOk, follow])
 
   const style = {
     ['--editor-min' as string]: `${minLines * 1.6 + 1.2}em`,

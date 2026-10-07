@@ -145,15 +145,11 @@
   font-size: 12px;
 }
 
-.cm-tooltip.cm-tooltip-above,
-.cm-tooltip.cm-tooltip-below {
-  border: 0;
-  background: transparent;
-}
-
-.cm-bs-tooltip {
+.cm-tooltip.cm-bs-tooltip,
+div.cm-tooltip.cm-bs-tooltip {
   background: var(--error);
   color: var(--error-ink);
+  border: 0;
   font-family: var(--font-ui);
   font-weight: 700;
   font-size: 13px;
@@ -163,10 +159,8 @@
   max-width: 320px;
 }
 
-.cm-tooltip .cm-tooltip-arrow:before {
-  border-top-color: var(--error) !important;
-}
-
-.cm-tooltip .cm-tooltip-arrow:after {
-  border-top-color: var(--error) !important;
+div.cm-tooltip.cm-bs-tooltip .cm-tooltip-arrow:before,
+div.cm-tooltip.cm-bs-tooltip .cm-tooltip-arrow:after {
+  border-top-color: var(--error);
+  border-bottom-color: var(--error);
 }
