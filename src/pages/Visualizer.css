@@ -45,24 +45,6 @@
   padding: 0 6px;
 }
 
-.ptoolbar__switch {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  padding: 6px 10px;
-  border-radius: var(--r-sm);
-  border: 1.5px solid var(--line);
-  cursor: pointer;
-}
-
-.ptoolbar__switch:has(input:checked) {
-  border-color: var(--brand);
-  background: var(--brand-soft);
-  color: var(--brand-text);
-}
-
 .ptoolbar--lg .seg__btn {
   font-size: var(--fs-sm);
   padding: 8px 12px;

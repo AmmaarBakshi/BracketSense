@@ -1,0 +1,152 @@
+.vcard2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: var(--sp-5);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--square);
+  box-shadow: var(--shadow-1);
+  transition: box-shadow var(--dur-fast);
+}
+
+.vcard2.is-open {
+  box-shadow: var(--shadow-2);
+}
+
+.vcard2--compact {
+  padding: var(--sp-4);
+  box-shadow: none;
+}
+
+.vcard2__head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.vcard2__q {
+  font-size: var(--fs-lg);
+  margin: 0;
+}
+
+.vcard2__a {
+  width: 100%;
+  animation: vflip var(--dur-med) var(--ease-out);
+  transform-origin: top;
+}
+
+.vcard2__a p {
+  margin: 0 0 8px;
+  line-height: 1.65;
+}
+
+.vcard2__bullet {
+  padding-left: 1.1em;
+  position: relative;
+}
+
+.vcard2__bullet::before {
+  content: '';
+  position: absolute;
+  left: 0.2em;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--square);
+}
+
+.vcard2__hook {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  background: var(--curly-soft);
+  font-weight: 650;
+  font-size: var(--fs-sm);
+}
+
+.vcard2__rate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line-strong);
+}
+
+.vrate[aria-pressed='true'].vrate--confident {
+  --btn-bg: var(--success-soft);
+  --btn-border: var(--success-fill);
+  --btn-fg: var(--success);
+}
+
+.vrate[aria-pressed='true'].vrate--unsure {
+  --btn-bg: var(--warning-soft);
+  --btn-border: var(--warning);
+  --btn-fg: var(--warning);
+}
+
+.vrate[aria-pressed='true'].vrate--again {
+  --btn-bg: var(--error-soft);
+  --btn-border: var(--error-fill);
+  --btn-fg: var(--error);
+}
+
+.vconf--confident {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.vconf--unsure {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.vconf--again {
+  background: var(--error-soft);
+  color: var(--error);
+}
+
+@keyframes vflip {
+  from {
+    opacity: 0;
+    transform: perspective(600px) rotateX(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* floating helper button */
+.viva-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 35;
+  box-shadow: var(--shadow-3);
+}
+
+@media (max-width: 719px) {
+  .viva-fab {
+    display: none;
+  }
+}
+
+.vdrawer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.vdrawer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}

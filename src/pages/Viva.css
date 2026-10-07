@@ -1,0 +1,76 @@
+.viva {
+  padding-top: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.viva__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.viva__search {
+  max-width: 520px;
+}
+
+.viva__searchbox {
+  position: relative;
+  display: block;
+}
+
+.viva__searchbox > .icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-2);
+}
+
+.viva__searchbox .input {
+  padding-left: 38px;
+}
+
+.viva__cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.viva__cats .chip[aria-pressed='true'] {
+  background: var(--square-soft);
+  border-color: var(--square-edge);
+  color: var(--square-text);
+}
+
+.viva__practice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.viva__conf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.viva__bar {
+  flex-basis: 100%;
+}
+
+.viva__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+@media (max-width: 420px) {
+  .viva__grid {
+    grid-template-columns: 1fr;
+  }
+}

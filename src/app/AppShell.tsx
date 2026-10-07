@@ -15,6 +15,8 @@ import { useProgress } from './progress'
 import { HelpDialog } from './HelpDialog'
 import { IntroDialog } from './IntroDialog'
 import { ResetDialog } from './ResetDialog'
+import { VivaDrawer } from './VivaDrawer'
+import '../components/viva/viva.css'
 import './AppShell.css'
 
 export function Brand({ compact }: { compact?: boolean }) {
@@ -270,6 +272,7 @@ export function AppShell() {
       <Footer />
       <HelpDialog />
       <IntroDialog />
+      <VivaDrawer />
       <ResetDialog />
     </div>
   )
