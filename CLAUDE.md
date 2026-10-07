@@ -23,7 +23,7 @@ npm run build      # type-check (tsc -b) + production build into dist/
 npm run preview    # serve dist/
 npm test           # vitest run (core + learning unit tests)
 npm run lint       # oxlint
-npm run e2e        # playwright smoke tests + screenshots (needs `npm run build` first)
+npm run e2e        # playwright: acceptance + screenshots + axe a11y scans (builds and serves itself)
 ```
 
 Run `npm run build` and `npm test` before every commit.
@@ -41,7 +41,8 @@ Run `npm run build` and `npm test` before every commit.
   Forward, back, jump, timeline, table and animations all derive from the same array.
 - Never fake state: stack pictures come from real `Stack` snapshots, charts from real runs.
 - `src/learning/` holds course content and progress (lessons, quiz, challenges, viva,
-  achievements, progress). Content may import `core/`; it must not import components.
+  achievements, progress). Content may import `core/`; it must not import components
+  (type-only imports are fine).
 - `src/config/project.ts` holds student / guide / college details. `src/config/assets.ts`
   maps image slots to files in `public/assets/` (inline SVG fallback when a file is missing).
 
@@ -64,22 +65,22 @@ Run `npm run build` and `npm test` before every commit.
 - Layouts: desktop split IDE, tablet stacked, mobile tabs. Check at 360 / 768 / 1280+.
 - 10k+ character inputs: memoized trace, virtualized timeline / table / deep stacks.
 
-## Acceptance checklist (SPEC section 7)
+## Acceptance checklist (SPEC section 7) — verified by `npm test` + `npm run e2e`
 
-- [ ] 1. `{[()]}` balanced; every push/pop verified
-- [ ] 2. `([)]` fails exactly at `)` with WRONG_TYPE
-- [ ] 3. `((` UNCLOSED_OPENING (2 remain)
-- [ ] 4. `))` UNMATCHED_CLOSING at the first `)`
-- [ ] 5. `a[i] = (b + c) * {d - e}` balanced; ignored count correct
-- [ ] 6. Step forward/back restores all panels exactly
-- [ ] 7. Wrong prediction jumps to the failing step with explanation
-- [ ] 8. Compare on `([)]`: Stack correct, Counter wrong, Queue wrong
-- [ ] 9. Quiz scoring and best-score persistence
-- [ ] 10. Dark and light themes fully readable (screenshots checked)
-- [ ] 11. Refresh keeps progress, theme, last input
-- [ ] 12. Desktop / tablet / mobile layouts verified
-- [ ] 13. Every edge case in SPEC section 2 passes
-- [ ] 14. Lighthouse accessibility ≥ 90 on Home and Visualizer
+- [x] 1. `{[()]}` balanced; every push/pop verified
+- [x] 2. `([)]` fails exactly at `)` with WRONG_TYPE
+- [x] 3. `((` UNCLOSED_OPENING (2 remain)
+- [x] 4. `))` UNMATCHED_CLOSING at the first `)`
+- [x] 5. `a[i] = (b + c) * {d - e}` balanced; ignored count correct
+- [x] 6. Step forward/back restores all panels exactly
+- [x] 7. Wrong prediction jumps to the failing step with explanation
+- [x] 8. Compare on `([)]`: Stack correct, Counter wrong, Queue wrong
+- [x] 9. Quiz scoring and best-score persistence
+- [x] 10. Dark and light themes fully readable (screenshots checked)
+- [x] 11. Refresh keeps progress, theme, last input
+- [x] 12. Desktop / tablet / mobile layouts verified
+- [x] 13. Every edge case in SPEC section 2 passes
+- [x] 14. Lighthouse accessibility ≥ 90 on Home and Visualizer
 
 ## Git
 
