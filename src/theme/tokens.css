@@ -1,0 +1,204 @@
+/*
+ * BracketSense design tokens.
+ * Light (default) is a warm, colourful paper theme. Dark is deep ink-navy.
+ * Every text/background pairing used by components was checked for WCAG AA (>= 4.5:1).
+ * Bracket colours are the product's visual language:  ( ) coral   [ ] teal   { } amber
+ */
+
+:root {
+  /* typography */
+  --font-ui: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-code: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --fs-xs: 0.78rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.375rem;
+  --fs-2xl: 1.75rem;
+  --fs-3xl: clamp(1.9rem, 1.2rem + 2.4vw, 2.6rem);
+  --fs-hero: clamp(2.4rem, 1.2rem + 4.6vw, 4rem);
+
+  /* spacing */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* shapes */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* layout */
+  --page-max: 1320px;
+  --nav-h: 64px;
+  --gutter: clamp(16px, 3vw, 32px);
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 140ms;
+  --dur-med: 260ms;
+  --dur-slow: 420ms;
+}
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* surfaces */
+  --bg: #fbf7f1;
+  --bg-band: #f6f1e9;
+  --surface: #ffffff;
+  --surface-2: #f6f1e9;
+  --surface-3: #efe8dc;
+  --surface-sunken: #f3ede3;
+  --line: #e6ddd0;
+  --line-strong: #d3c7b6;
+  --overlay: rgba(29, 36, 51, 0.45);
+
+  /* text */
+  --ink: #1d2433;
+  --ink-2: #4b5568;
+  --ink-3: #5f687a;
+  --ink-inverse: #ffffff;
+
+  /* brand */
+  --brand: #3651d4;
+  --brand-hover: #2c44b8;
+  --brand-ink: #ffffff;
+  --brand-soft: #e8ecff;
+  --brand-text: #2c44b8;
+
+  /* status */
+  --success: #17773f;
+  --success-fill: #1e9c53;
+  --success-soft: #e3f5ea;
+  --success-ink: #ffffff;
+  --error: #b92f28;
+  --error-fill: #d9413a;
+  --error-soft: #fde8e6;
+  --error-ink: #ffffff;
+  --warning: #8a5a00;
+  --warning-soft: #fff1d6;
+  --neutral-soft: #eeeae3;
+
+  /* bracket families */
+  --round: #ff7a5c;
+  --round-soft: #ffe6df;
+  --round-text: #b33a24;
+  --round-edge: #e05a3c;
+  --square: #22b5a0;
+  --square-soft: #d9f4ef;
+  --square-text: #0a7064;
+  --square-edge: #149483;
+  --curly: #ffc23d;
+  --curly-soft: #fff0cc;
+  --curly-text: #8a5a00;
+  --curly-edge: #e0a11c;
+  --on-bracket: #1d2433;
+  --ignored: #b9b1a5;
+  --ignored-soft: #f0ebe3;
+
+  /* page tints (section colour bands) */
+  --tint-home: #e8ecff;
+  --tint-learn: #fff0cc;
+  --tint-visualizer: #d9f4ef;
+  --tint-playground: #ffe6df;
+  --tint-compare: #e8ecff;
+  --tint-quiz: #fff0cc;
+  --tint-challenges: #ffe6df;
+  --tint-viva: #d9f4ef;
+
+  /* elevation */
+  --shadow-1: 0 1px 2px rgba(29, 36, 51, 0.06), 0 2px 6px rgba(29, 36, 51, 0.05);
+  --shadow-2: 0 2px 4px rgba(29, 36, 51, 0.05), 0 10px 28px rgba(29, 36, 51, 0.09);
+  --shadow-3: 0 8px 16px rgba(29, 36, 51, 0.08), 0 24px 56px rgba(29, 36, 51, 0.16);
+  --shadow-block: 0 3px 0 rgba(29, 36, 51, 0.18);
+
+  --focus: #3651d4;
+  --code-bg: #fffdf9;
+  --selection: rgba(54, 81, 212, 0.18);
+  --paper: #ffffff;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0e1628;
+  --bg-band: #121c33;
+  --surface: #16203a;
+  --surface-2: #1c2845;
+  --surface-3: #243252;
+  --surface-sunken: #111a30;
+  --line: #2a3858;
+  --line-strong: #3a4b70;
+  --overlay: rgba(4, 8, 18, 0.66);
+
+  --ink: #edf0f7;
+  --ink-2: #b2bcd3;
+  --ink-3: #8f9ab5;
+  --ink-inverse: #0e1628;
+
+  --brand: #7d97ff;
+  --brand-hover: #9aafff;
+  --brand-ink: #0e1628;
+  --brand-soft: #22305a;
+  --brand-text: #9db0ff;
+
+  --success: #4cc983;
+  --success-fill: #3fbf78;
+  --success-soft: #143526;
+  --success-ink: #0e1628;
+  --error: #ff7a70;
+  --error-fill: #ff6b61;
+  --error-soft: #3d1a1e;
+  --error-ink: #0e1628;
+  --warning: #ffb547;
+  --warning-soft: #3a2c14;
+  --neutral-soft: #1f2a44;
+
+  --round: #ff8566;
+  --round-soft: #3b2220;
+  --round-text: #ff9a80;
+  --round-edge: #ffad99;
+  --square: #2cc7af;
+  --square-soft: #133a39;
+  --square-text: #4fdcc4;
+  --square-edge: #7de8d6;
+  --curly: #ffc94d;
+  --curly-soft: #3a3020;
+  --curly-text: #ffd066;
+  --curly-edge: #ffdf94;
+  --on-bracket: #1d2433;
+  --ignored: #5d6b8a;
+  --ignored-soft: #1f2a44;
+
+  --tint-home: #1a2550;
+  --tint-learn: #2e2716;
+  --tint-visualizer: #12302f;
+  --tint-playground: #33201f;
+  --tint-compare: #1a2550;
+  --tint-quiz: #2e2716;
+  --tint-challenges: #33201f;
+  --tint-viva: #12302f;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2);
+  --shadow-2: 0 2px 4px rgba(0, 0, 0, 0.3), 0 10px 28px rgba(0, 0, 0, 0.35);
+  --shadow-3: 0 8px 16px rgba(0, 0, 0, 0.35), 0 24px 56px rgba(0, 0, 0, 0.5);
+  --shadow-block: 0 3px 0 rgba(0, 0, 0, 0.45);
+
+  --focus: #9db0ff;
+  --code-bg: #121b31;
+  --selection: rgba(125, 151, 255, 0.28);
+  --paper: #ffffff;
+}
