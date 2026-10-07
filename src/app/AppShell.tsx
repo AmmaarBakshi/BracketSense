@@ -9,6 +9,7 @@ import { useSettings } from './settings'
 import { useUI } from './ui'
 import { isTypingTarget } from './keyboard'
 import { HelpDialog } from './HelpDialog'
+import { ResetDialog } from './ResetDialog'
 import './AppShell.css'
 
 export function Brand({ compact }: { compact?: boolean }) {
@@ -246,6 +247,7 @@ export function AppShell() {
       </main>
       <Footer />
       <HelpDialog />
+      <ResetDialog />
     </div>
   )
 }

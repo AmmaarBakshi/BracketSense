@@ -1,0 +1,63 @@
+.toasts {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(380px, calc(100vw - 32px));
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px 12px 14px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--brand);
+  box-shadow: var(--shadow-3);
+  animation: bs-rise-in var(--dur-med) var(--ease-out);
+}
+
+.toast--success {
+  border-left-color: var(--success-fill);
+}
+
+.toast--error {
+  border-left-color: var(--error-fill);
+}
+
+.toast__visual {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: var(--brand-text);
+}
+
+.toast__visual > .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.toast__visual .medal {
+  width: 44px;
+  height: 44px;
+}
+
+.toast__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+  min-width: 0;
+}
+
+.toast__close {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}

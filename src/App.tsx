@@ -2,7 +2,9 @@ import { lazy } from 'react'
 import { HashRouter, Route, Routes } from 'react-router'
 import { AnnouncerProvider } from './app/announcer'
 import { AppShell } from './app/AppShell'
+import { ProgressProvider } from './app/progress'
 import { SettingsProvider } from './app/settings'
+import { ToastProvider } from './app/toast'
 import { UIProvider } from './app/ui'
 
 // Each page is its own chunk so the editor and charts only load where they are used.
@@ -20,24 +22,28 @@ export function App() {
   return (
     <SettingsProvider>
       <AnnouncerProvider>
-        <HashRouter>
-          <UIProvider>
-            <Routes>
-              <Route element={<AppShell />}>
-                <Route index element={<Home />} />
-                <Route path="learn" element={<Learn />} />
-                <Route path="learn/:lessonId" element={<Learn />} />
-                <Route path="visualizer" element={<Visualizer />} />
-                <Route path="playground" element={<Playground />} />
-                <Route path="compare" element={<Compare />} />
-                <Route path="quiz" element={<Quiz />} />
-                <Route path="challenges" element={<Challenges />} />
-                <Route path="viva" element={<Viva />} />
-                <Route path="*" element={<NotFound />} />
-              </Route>
-            </Routes>
-          </UIProvider>
-        </HashRouter>
+        <ToastProvider>
+          <ProgressProvider>
+            <HashRouter>
+              <UIProvider>
+                <Routes>
+                  <Route element={<AppShell />}>
+                    <Route index element={<Home />} />
+                    <Route path="learn" element={<Learn />} />
+                    <Route path="learn/:lessonId" element={<Learn />} />
+                    <Route path="visualizer" element={<Visualizer />} />
+                    <Route path="playground" element={<Playground />} />
+                    <Route path="compare" element={<Compare />} />
+                    <Route path="quiz" element={<Quiz />} />
+                    <Route path="challenges" element={<Challenges />} />
+                    <Route path="viva" element={<Viva />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Route>
+                </Routes>
+              </UIProvider>
+            </HashRouter>
+          </ProgressProvider>
+        </ToastProvider>
       </AnnouncerProvider>
     </SettingsProvider>
   )
