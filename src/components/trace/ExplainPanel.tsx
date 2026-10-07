@@ -22,24 +22,6 @@ export function ExplainPanel({ step, total }: { step: TraceStep | null; total: n
   }
 
   const top = step.top ?? step.stackBefore[step.stackBefore.length - 1]
-  const rows: Array<[string, ReactNode]> = [
-    [
-      'Character',
-      step.char !== null ? (
-        <span className="row" style={{ gap: 8 }}>
-          <Glyph char={step.char} /> <span className="muted small">{formatPosition(step.position)}</span>
-        </span>
-      ) : (
-        <span>End of input</span>
-      ),
-    ],
-    ['What did the algorithm see?', <RichText text={step.seen} />],
-    ['What must it do?', <RichText text={step.mustDo} />],
-    ['Stack top', top ? <Glyph char={top.char} /> : <span className="muted">empty</span>],
-    ['Expected', step.expected ? <Glyph char={step.expected} /> : <span className="muted">—</span>],
-    ['Found', step.found ? <Glyph char={step.found} /> : step.char && step.kind !== 'end' ? <Glyph char={step.char} /> : <span className="muted">—</span>],
-  ]
-
   const tone = step.operation === 'ERROR' || step.operation === 'REJECT' ? 'error' : step.operation === 'ACCEPT' ? 'success' : 'info'
 
   return (
@@ -51,12 +33,26 @@ export function ExplainPanel({ step, total }: { step: TraceStep | null; total: n
         <OpBadge op={step.operation} />
       </div>
       <dl className="explain__grid">
-        {rows.map(([k, v]) => (
-          <div key={k} className="explain__row">
-            <dt>{k}</dt>
-            <dd>{v}</dd>
-          </div>
-        ))}
+        <Row label="Character">
+          {step.char !== null ? (
+            <span className="row" style={{ gap: 8 }}>
+              <Glyph char={step.char} /> <span className="muted small">{formatPosition(step.position)}</span>
+            </span>
+          ) : (
+            <span>End of input</span>
+          )}
+        </Row>
+        <Row label="What did the algorithm see?">
+          <RichText text={step.seen} />
+        </Row>
+        <Row label="What must it do?">
+          <RichText text={step.mustDo} />
+        </Row>
+        <Row label="Stack top">{top ? <Glyph char={top.char} /> : <span className="muted">empty</span>}</Row>
+        <Row label="Expected">{step.expected ? <Glyph char={step.expected} /> : <span className="muted">—</span>}</Row>
+        <Row label="Found">
+          {step.found ? <Glyph char={step.found} /> : step.char && step.kind !== 'end' ? <Glyph char={step.char} /> : <span className="muted">—</span>}
+        </Row>
       </dl>
       <div className={`callout callout--${tone === 'info' ? '' : tone} explain__why`}>
         <Icon name={tone === 'error' ? 'alert' : tone === 'success' ? 'checkCircle' : 'bulb'} />
@@ -69,6 +65,15 @@ export function ExplainPanel({ step, total }: { step: TraceStep | null; total: n
           <strong>Error:</strong> <RichText text={step.error.message} />
         </p>
       )}
+    </div>
+  )
+}
+
+function Row({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="explain__row">
+      <dt>{label}</dt>
+      <dd>{children}</dd>
     </div>
   )
 }

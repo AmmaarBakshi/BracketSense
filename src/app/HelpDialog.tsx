@@ -78,7 +78,7 @@ export function HelpDialog() {
               className="help__card"
               onClick={() => {
                 ui.closeHelp()
-                navigate('/visualizer?tour=1')
+                navigate(`/visualizer?tour=${Date.now()}`)
               }}
             >
               <Icon name="flag" />

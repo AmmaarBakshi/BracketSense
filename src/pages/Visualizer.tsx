@@ -97,7 +97,10 @@ export default function VisualizerPage() {
   const [prediction, setPrediction] = useState<{ input: string; value: Prediction } | null>(null)
   const [skippedFor, setSkippedFor] = useState<string | null>(null)
   const [nestingOpen, setNestingOpen] = useState(false)
-  const [tourOpen, setTourOpen] = useState(params.get('tour') === '1')
+  // ?tour=<key> opens the guided tour; closing it remembers that key.
+  const tourKey = params.get('tour')
+  const [closedTour, setClosedTour] = useState<string | null>(null)
+  const tourOpen = !!tourKey && tourKey !== closedTour
   const traceRef = useRef<HTMLDivElement>(null)
   const editorRef = useRef<HTMLDivElement>(null)
 
@@ -105,20 +108,29 @@ export default function VisualizerPage() {
   const needsPrediction = predictMode && !activePrediction && skippedFor !== trace.input && player.atStart
   const atVerdict = player.index === player.lastIndex && player.index >= 0
 
-  // Drop one-shot URL params (input, tour) so a refresh keeps the last typed input.
+  // Drop the one-shot ?input= param so a refresh keeps the last typed input.
   useEffect(() => {
-    if (params.get('tour') === '1') setTourOpen(true)
-    if (params.has('input') || params.has('tour')) {
+    if (params.has('input')) {
       setParams(
         (p) => {
           p.delete('input')
-          p.delete('tour')
           return p
         },
         { replace: true },
       )
     }
   }, [params, setParams])
+
+  const closeTour = () => {
+    setClosedTour(tourKey)
+    setParams(
+      (p) => {
+        p.delete('tour')
+        return p
+      },
+      { replace: true },
+    )
+  }
 
   // Remember the input (refresh keeps it).
   useEffect(() => {
@@ -158,12 +170,9 @@ export default function VisualizerPage() {
       recorded.current.prediction = prediction
       const correct = (activePrediction === 'balanced') === trace.balanced
       update((p) => recordPrediction(p, correct))
-      if (!correct) {
-        announce("Don't worry. Now let's inspect the exact step where the prediction failed.", 'assertive')
-        if (isMobile) setTab('explain')
-      }
+      if (!correct) announce("Don't worry. Now let's inspect the exact step where the prediction failed.", 'assertive')
     }
-  }, [atVerdict, trace, activePrediction, prediction, update, announce, isMobile])
+  }, [atVerdict, trace, activePrediction, prediction, update, announce])
 
   // Keyboard: Space play/pause, ← → step, R reset, P presentation.
   useEffect(() => {
@@ -417,7 +426,7 @@ export default function VisualizerPage() {
       </div>
 
       <NestingFold trace={trace} open={nestingOpen} onClose={() => setNestingOpen(false)} />
-      <Tour steps={TOUR} open={tourOpen} onClose={() => setTourOpen(false)} />
+      <Tour steps={TOUR} open={tourOpen} onClose={closeTour} />
     </>
   )
 }
