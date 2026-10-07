@@ -218,6 +218,7 @@ function SpaceLab({ compact }: { compact?: boolean }) {
       <LineChart
         points={visible}
         step
+        integer
         height={compact ? 200 : 220}
         label={`Step chart of stack height for ${input}. Maximum ${data.max}.`}
         xLabel="characters read"
@@ -256,6 +257,7 @@ function SpaceLab({ compact }: { compact?: boolean }) {
             <LineChart
               points={d.heights.map((h, i) => ({ x: i + 1, y: h }))}
               step
+              integer
               height={150}
               label={`Stack height for ${s}: maximum ${d.max}.`}
               xLabel="characters read"

@@ -18,6 +18,8 @@ interface LineChartProps {
   yMax?: number
   /** Draw as a step chart (stack height per character). */
   step?: boolean
+  /** Whole-number axes (counts): tick steps of 1, 2, 5, 10… */
+  integer?: boolean
   /** Show a dot on every point (only for a handful of points). */
   dots?: boolean
   formatX?: (x: number) => string
@@ -25,12 +27,13 @@ interface LineChartProps {
   tooltip: (p: ChartPoint, index: number) => ReactNode
 }
 
-/** Round tick step: 1, 2, 2.5 or 5 × 10^k. */
-function niceTicks(max: number, count = 5): number[] {
+/** Round tick step: 1, 2, 2.5 or 5 × 10^k (integers only when `integer`). */
+function niceTicks(max: number, count = 5, integer = false): number[] {
   if (max <= 0) return [0, 1]
   const raw = max / count
   const pow = 10 ** Math.floor(Math.log10(raw))
-  const step = [1, 2, 2.5, 5, 10].map((m) => m * pow).find((s) => s >= raw) ?? raw
+  const steps = (integer ? [1, 2, 5, 10] : [1, 2, 2.5, 5, 10]).map((m) => m * pow).filter((s) => !integer || s >= 1)
+  const step = steps.find((s) => s >= raw) ?? Math.max(raw, integer ? 1 : raw)
   const ticks: number[] = []
   for (let v = 0; v <= max + step * 0.001; v += step) ticks.push(Math.round(v * 1000) / 1000)
   if (ticks[ticks.length - 1] < max) ticks.push(ticks[ticks.length - 1] + step)
@@ -43,7 +46,7 @@ const fmt = (n: number) => n.toLocaleString(undefined, { maximumFractionDigits: 
  * Single-series SVG line chart. 2px line, 8px dots with a surface ring,
  * hairline grid, crosshair + tooltip on hover, arrow keys move the crosshair.
  */
-export function LineChart({ points, label, xLabel, yLabel, height = 240, xMax, yMax, step, dots, formatX = fmt, formatY = fmt, tooltip }: LineChartProps) {
+export function LineChart({ points, label, xLabel, yLabel, height = 240, xMax, yMax, step, integer, dots, formatX = fmt, formatY = fmt, tooltip }: LineChartProps) {
   const box = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(600)
   const [hover, setHover] = useState<number | null>(null)
@@ -62,8 +65,8 @@ export function LineChart({ points, label, xLabel, yLabel, height = 240, xMax, y
   const ih = height - m.top - m.bottom
   const maxX = xMax ?? Math.max(1, ...points.map((p) => p.x))
   const maxY = yMax ?? Math.max(1, ...points.map((p) => p.y))
-  const yTicks = useMemo(() => niceTicks(maxY, 4), [maxY])
-  const xTicks = useMemo(() => niceTicks(maxX, width < 420 ? 3 : 5), [maxX, width])
+  const yTicks = useMemo(() => niceTicks(maxY, 4, integer), [maxY, integer])
+  const xTicks = useMemo(() => niceTicks(maxX, width < 420 ? 3 : 5, integer), [maxX, width, integer])
   const yTop = yTicks[yTicks.length - 1]
   const xRight = xTicks[xTicks.length - 1]
   const sx = (x: number) => m.left + (x / xRight) * iw
