@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import { runStrategy } from '../core/alternatives'
 import { describeChar } from '../core/bracketRules'
-import { buildTrace } from '../core/traceEngine'
-import { CompareColumns, scrubPositions, type ColumnSpec } from '../components/compare/CompareColumns'
+import { CompareColumns } from '../components/compare/CompareColumns'
+import { useCompare } from '../components/compare/useCompare'
 import { Icon } from '../components/Icon'
 import { PageHeader, useDocumentTitle } from '../components/PageHeader'
 import { ColoredCode, RichText } from '../components/RichText'
@@ -11,21 +10,6 @@ import { LESSON_BY_ID } from '../learning/lessons'
 import './Compare.css'
 
 const PRESETS = ['([)]', '{[()]}', '(]', '((', '))', '{[(])}', 'a[i] = (b + c) * {d - e}']
-
-export function useCompare(input: string) {
-  return useMemo(() => {
-    const stack = runStrategy(input, 'stack')
-    const counter = runStrategy(input, 'counter')
-    const queue = runStrategy(input, 'queue')
-    const truth = buildTrace(input).balanced
-    const columns: ColumnSpec[] = [
-      { result: stack, title: 'Stack (LIFO)', badge: { label: '✓ IDEAL', tone: 'success' } },
-      { result: counter, title: 'Counter', badge: { label: '⚠ INCOMPLETE', tone: 'warning' } },
-      { result: queue, title: 'Queue (FIFO)', badge: { label: '✕ UNSUITABLE', tone: 'error' } },
-    ]
-    return { columns, truth, positions: scrubPositions(input, [stack, counter, queue]) }
-  }, [input])
-}
 
 export default function ComparePage() {
   useDocumentTitle('Compare')

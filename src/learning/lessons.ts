@@ -1,3 +1,4 @@
+import type { AssetSlot } from '../config/assets'
 import type { ConceptId, LessonId } from './concepts'
 
 /**
@@ -33,6 +34,8 @@ export interface Lesson {
   sections: LessonSection[]
   widget: WidgetId
   widgetTitle: string
+  /** Original diagram from the project report, shown as a reference. */
+  figure?: { slot: AssetSlot; caption: string }
   check: LessonCheck
 }
 
@@ -138,6 +141,7 @@ export const LESSONS: readonly Lesson[] = [
     ],
     widget: 'operations',
     widgetTitle: 'Run the operations',
+    figure: { slot: 'report-stack-evolution', caption: 'Original diagram from the project report (Figure 1): stack evolution while scanning {[()]}. The final stack is empty, so the string is balanced.' },
     check: {
       question: 'What does peek() do?',
       options: ['Removes the top element', 'Returns the top element without removing it', 'Returns the bottom element', 'Checks whether the stack is empty'],
@@ -220,6 +224,7 @@ export const LESSONS: readonly Lesson[] = [
     ],
     widget: 'mini-trace',
     widgetTitle: 'Flowchart + pseudocode, live',
+    figure: { slot: 'report-flowchart', caption: 'Original diagram from the project report (Figure 2): decision flow used by the checker for each character in the source code.' },
     check: {
       question: 'The top of the Stack is `[` and the next character is `)`. What happens?',
       options: ['Push `)`', 'Pop `[`', 'Error: wrong bracket type', 'Ignore `)`'],
