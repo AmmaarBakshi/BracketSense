@@ -1,0 +1,62 @@
+.nesting {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.nesting__code {
+  margin: 0;
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  font-family: var(--font-code);
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 380px;
+  overflow: auto;
+}
+
+.fold-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 6px;
+  margin: 0 1px;
+  border-radius: 7px;
+  font-weight: 850;
+  color: var(--on-bracket);
+  background: var(--round);
+  box-shadow: var(--shadow-block);
+  vertical-align: baseline;
+}
+
+.fold-chip--square {
+  background: var(--square);
+}
+
+.fold-chip--curly {
+  background: var(--curly);
+}
+
+.fold-chip__dots {
+  opacity: 0.75;
+  padding: 0 1px;
+}
+
+.fold-chip.is-new {
+  animation: fold-in 420ms var(--ease-bounce);
+}
+
+@keyframes fold-in {
+  from {
+    transform: scale(1.4);
+    opacity: 0.4;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}

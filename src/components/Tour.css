@@ -1,0 +1,51 @@
+.tour {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.tour__ring {
+  position: fixed;
+  border-radius: var(--r-lg);
+  box-shadow:
+    0 0 0 4px var(--brand),
+    0 0 0 9999px rgba(14, 22, 40, 0.42);
+  transition: all var(--dur-med) var(--ease-out);
+}
+
+.tour__card {
+  position: fixed;
+  pointer-events: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-3);
+  padding: var(--sp-4) var(--sp-5);
+  animation: bs-rise-in var(--dur-med) var(--ease-out);
+}
+
+.tour__card:focus {
+  outline: none;
+}
+
+.tour__card:focus-visible {
+  outline: 3px solid var(--focus);
+}
+
+.tour__count {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  color: var(--brand-text);
+  letter-spacing: 0.06em;
+}
+
+.tour__title {
+  font-size: var(--fs-lg);
+  margin: 2px 0 var(--sp-2);
+}
+
+.tour__card p {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
