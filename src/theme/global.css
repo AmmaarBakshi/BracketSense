@@ -521,6 +521,22 @@ kbd {
   color: var(--ink-2);
 }
 
+.bglyph-run,
+.code-inline {
+  font-family: var(--font-code);
+  font-weight: 600;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  padding: 0.05em 0.4em;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.br-strong {
+  font-weight: 800;
+}
+
 .ctext--round {
   color: var(--round-text);
 }
