@@ -1,0 +1,89 @@
+.compare {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  padding-top: var(--sp-6);
+}
+
+.compare__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.compare__field {
+  flex: 1;
+  max-width: 520px;
+}
+
+.compare__presets {
+  gap: 6px;
+}
+
+.compare__scrub {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.compare__range {
+  flex: 1;
+  min-width: 160px;
+}
+
+.compare__pos {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 750;
+  font-size: var(--fs-sm);
+  min-width: 190px;
+}
+
+.compare__input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  font-size: 1.35rem;
+}
+
+.compare__input > span {
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.compare__input .compare__ch {
+  background: transparent;
+  border: 0;
+  padding: 0 2px;
+}
+
+.compare__input .is-done {
+  opacity: 0.5;
+}
+
+.compare__input .is-current {
+  background: var(--curly);
+}
+
+.compare__input .is-current .compare__ch,
+.compare__input .is-current .compare__ch span {
+  color: var(--on-bracket);
+}
+
+.compare__h2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: var(--fs-xl);
+}
+
+.demo h3 {
+  font-size: var(--fs-lg);
+}
+
+.demo p {
+  color: var(--ink-2);
+}
