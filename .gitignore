@@ -1,0 +1,21 @@
+# dependencies and builds
+node_modules
+dist
+dist-ssr
+*.local
+*.tsbuildinfo
+node_modules/.tmp
+
+# test output
+test-results
+playwright-report
+blob-report
+coverage
+
+# editors / OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.log
