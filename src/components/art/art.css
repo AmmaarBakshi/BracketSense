@@ -1,0 +1,188 @@
+/* Shared fills for the inline SVG fallback art. Theme-aware through tokens. */
+.art {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.art .f-round {
+  fill: var(--round);
+}
+
+.art .f-square {
+  fill: var(--square);
+}
+
+.art .f-curly {
+  fill: var(--curly);
+}
+
+.art .f-brand {
+  fill: var(--brand);
+}
+
+.art .f-brand-soft {
+  fill: var(--brand-soft);
+}
+
+.art .f-surface {
+  fill: var(--surface);
+}
+
+.art .f-surface2 {
+  fill: var(--surface-2);
+}
+
+.art .f-surface3 {
+  fill: var(--surface-3);
+}
+
+.art .f-ink {
+  fill: var(--ink);
+}
+
+.art .f-onb {
+  fill: var(--on-bracket);
+}
+
+.art .f-success {
+  fill: var(--success-fill);
+}
+
+.art .f-error {
+  fill: var(--error-fill);
+}
+
+.art .f-line {
+  fill: var(--line-strong);
+}
+
+.art .f-white {
+  fill: #ffffff;
+}
+
+.art .s-ink {
+  stroke: var(--ink);
+}
+
+.art .s-onb {
+  stroke: var(--on-bracket);
+}
+
+.art .s-line {
+  stroke: var(--line-strong);
+}
+
+.art .s-brand {
+  stroke: var(--brand);
+}
+
+.art .s-success {
+  stroke: var(--success-fill);
+}
+
+.art .s-error {
+  stroke: var(--error-fill);
+}
+
+.art .s-ink2 {
+  stroke: var(--ink-2);
+}
+
+.art text {
+  font-family: var(--font-code);
+  font-weight: 800;
+}
+
+.art .t-onb {
+  fill: var(--on-bracket);
+}
+
+.art .t-ink {
+  fill: var(--ink);
+}
+
+.art .t-ink2 {
+  fill: var(--ink-2);
+}
+
+.art-frame {
+  display: block;
+  width: 100%;
+}
+
+.art-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* achievement medal (HTML, used when no badge picture exists) */
+.medal {
+  --medal: var(--brand);
+  --medal-soft: var(--brand-soft);
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--medal-soft);
+  color: var(--medal);
+  border: 3px solid var(--medal);
+  box-shadow: inset 0 0 0 4px var(--surface);
+  flex: 0 0 auto;
+}
+
+.medal .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.medal--round {
+  --medal: var(--round-text);
+  --medal-soft: var(--round-soft);
+}
+
+.medal--square {
+  --medal: var(--square-text);
+  --medal-soft: var(--square-soft);
+}
+
+.medal--curly {
+  --medal: var(--curly-text);
+  --medal-soft: var(--curly-soft);
+}
+
+.medal--brand {
+  --medal: var(--brand-text);
+  --medal-soft: var(--brand-soft);
+}
+
+.medal--success {
+  --medal: var(--success);
+  --medal-soft: var(--success-soft);
+}
+
+.medal--locked {
+  --medal: var(--ink-3);
+  --medal-soft: var(--surface-2);
+  border-style: dashed;
+}
+
+.medal--lg {
+  width: 76px;
+  height: 76px;
+}
+
+.medal--lg .icon {
+  width: 34px;
+  height: 34px;
+}
+
+.medal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
