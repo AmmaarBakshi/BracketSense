@@ -2,6 +2,7 @@ import type { MatchInfo } from '../../core/matcher'
 import { createPositionLookup } from '../../core/position'
 import { Icon } from '../Icon'
 import { Glyph, RichText } from '../RichText'
+import './MatchStatus.css'
 
 /** "✓ Matching pair found" / "⚠ No matching bracket" line under an editor. */
 export function MatchStatus({ info, input }: { info: MatchInfo | null; input: string }) {

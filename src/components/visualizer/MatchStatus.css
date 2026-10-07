@@ -1,0 +1,44 @@
+/* match status */
+.matchstatus {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  background: var(--surface-2);
+  min-height: 42px;
+}
+
+.matchstatus--idle {
+  color: var(--ink-2);
+}
+
+.matchstatus--ok {
+  background: var(--success-soft);
+}
+
+.matchstatus--ok > .icon {
+  color: var(--success);
+}
+
+.matchstatus--bad {
+  background: var(--warning-soft);
+}
+
+.matchstatus--bad > .icon {
+  color: var(--warning);
+}
+
+.matchstatus__pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.matchstatus__detail {
+  flex-basis: 100%;
+  color: var(--ink-2);
+}
