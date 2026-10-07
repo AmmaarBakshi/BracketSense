@@ -71,7 +71,7 @@ export function IntroDialog() {
     >
       <div className="intro">
         <div className="intro__q">
-          <div className="intro__brackets" aria-label="{ [ ( ) ] }">
+          <div className="intro__brackets" role="img" aria-label="{ [ ( ) ] }">
             <ColoredCode text="{ [ ( ) ] }" />
           </div>
           <p className="intro__ask">How can a computer know which opening bracket should be matched first?</p>

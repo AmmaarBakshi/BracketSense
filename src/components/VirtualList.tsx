@@ -14,13 +14,15 @@ interface VirtualListProps {
   /** Accessible role for the scroll container (e.g. "list"). */
   role?: string
   ariaLabel?: string
+  /** Make the scroll region keyboard-focusable (when items have no focusable content). */
+  focusable?: boolean
 }
 
 /**
  * Minimal fixed-size windowing: only the items in view (plus overscan) are in
  * the DOM, so a 10 000-step timeline or table stays smooth.
  */
-export function VirtualList({ count, itemSize, horizontal, scrollToIndex, renderItem, className, style, overscan = 6, role, ariaLabel }: VirtualListProps) {
+export function VirtualList({ count, itemSize, horizontal, scrollToIndex, renderItem, className, style, overscan = 6, role, ariaLabel, focusable }: VirtualListProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [offset, setOffset] = useState(0)
   const [viewport, setViewport] = useState(600)
@@ -73,6 +75,7 @@ export function VirtualList({ count, itemSize, horizontal, scrollToIndex, render
       onScroll={(e) => setOffset(horizontal ? e.currentTarget.scrollLeft : e.currentTarget.scrollTop)}
       role={role}
       aria-label={ariaLabel}
+      tabIndex={focusable ? 0 : undefined}
     >
       <div style={horizontal ? { width: count * itemSize, height: '100%', position: 'relative' } : { height: count * itemSize, position: 'relative' }}>{items}</div>
     </div>

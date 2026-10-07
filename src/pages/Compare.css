@@ -59,8 +59,9 @@
   padding: 0 2px;
 }
 
-.compare__input .is-done {
-  opacity: 0.5;
+.compare__input .is-done .compare__ch,
+.compare__input .is-done .compare__ch span {
+  color: var(--ink-3);
 }
 
 .compare__input .is-current {

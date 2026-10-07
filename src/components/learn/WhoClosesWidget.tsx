@@ -66,7 +66,7 @@ export function WhoClosesWidget() {
     <div className="widget widget--split">
       <div className="widget__controls">
         <p className="widget__qtext">Close every bracket. Which closer is allowed next?</p>
-        <div className="arcs" style={{ width }}>
+        <div className="arcs" style={{ width }} tabIndex={-1}>
           <svg width={width} height={70} aria-hidden="true" className="arcs__svg">
             {pairs.map(([a, b]) => {
               const x1 = a * CELL + CELL / 2
@@ -75,7 +75,7 @@ export function WhoClosesWidget() {
               return <path key={`${a}-${b}`} d={`M${x1} 70 C ${x1} ${70 - h}, ${x2} ${70 - h}, ${x2} 70`} className={`arc arc--${familyOf(current[a])}`} />
             })}
           </svg>
-          <div className="arcs__chars" aria-label={`Current input ${current}`}>
+          <div className="arcs__chars" role="img" aria-label={`Current input ${current}`}>
             {[...current].map((c, i) => (
               <span key={i} className={`arcs__ch ctext--${familyOf(c)}`} style={{ width: CELL }}>
                 {c}

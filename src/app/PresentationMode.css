@@ -79,7 +79,7 @@
 }
 
 .pm-spot__ch.is-done {
-  opacity: 0.4;
+  color: var(--ink-3);
 }
 
 .pm-spot__ch.is-current {

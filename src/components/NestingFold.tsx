@@ -104,7 +104,7 @@ export function NestingFold({ trace, open, onClose }: { trace: Trace; open: bool
             {frame} of {pairs.length} pairs folded
           </span>
         </div>
-        <pre className="nesting__code" aria-label="Code with folded pairs">
+        <pre className="nesting__code" tabIndex={0}>
           {rendered}
         </pre>
         {lastFolded && (

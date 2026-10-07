@@ -148,7 +148,8 @@ export function ChallengePlayer({ challenge: c, onDone, nextTitle, onNext }: Pla
           </div>
           <div>
             <h3 className="cdone__title">Challenge complete!</h3>
-            <p className="cdone__stars" aria-label={`${result.stars} of 3 stars`}>
+            <p className="cdone__stars">
+              <span className="sr-only">{result.stars} of 3 stars. </span>
               {[1, 2, 3].map((n) => (
                 <Icon key={n} name={n <= result.stars ? 'starFilled' : 'star'} className={n <= result.stars ? 'star-on' : 'star-off'} />
               ))}

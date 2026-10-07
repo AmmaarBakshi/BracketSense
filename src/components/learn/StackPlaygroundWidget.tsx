@@ -109,7 +109,7 @@ export function StackPlaygroundWidget() {
           {log.length === 0 ? (
             <p className="small muted">Push a few letters, then pop them. Which comes out first?</p>
           ) : (
-            <ol className="oplog__list">
+            <ol className="oplog__list" tabIndex={0} aria-label="Operation log, newest first">
               {log.map((e, i) => (
                 <li key={e.id} className={`oplog__item oplog__item--${e.tone} ${i === 0 ? 'is-latest' : ''}`}>
                   <code>{e.op}</code>

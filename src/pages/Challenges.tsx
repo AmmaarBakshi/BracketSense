@@ -94,7 +94,7 @@ export default function ChallengesPage() {
                           <span className="badge">{c.kind === 'trace' ? 'Predict & trace' : c.kind === 'build' ? 'Build' : 'Find the bug'}</span>
                           <span className="ccard__status">
                             {rec?.completed ? (
-                              <span aria-label={`${rec.stars} of 3 stars`}>
+                              <span role="img" aria-label={`${rec.stars} of 3 stars`}>
                                 {[1, 2, 3].map((n) => (
                                   <Icon key={n} name={n <= rec.stars ? 'starFilled' : 'star'} className={n <= rec.stars ? 'star-on' : 'star-off'} />
                                 ))}

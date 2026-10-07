@@ -74,7 +74,7 @@ export function PracticeWidget() {
         </div>
       </div>
 
-      <div className="practice__input" aria-label={`Input: ${input}`}>
+      <div className="practice__input" role="group" aria-label={`Input: ${input}`}>
         {[...input].map((c, k) => {
           const isFail = phase === 'done' && failAt === k
           const isPicked = picked === k

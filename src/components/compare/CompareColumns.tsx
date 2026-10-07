@@ -129,10 +129,11 @@ function CounterViz({ result, step }: { result: AltResult; step: AltStep | null 
   const upto = step ? result.steps.slice(0, result.steps.indexOf(step) + 1).filter((s) => s.char !== null) : []
   return (
     <div className="mcounter">
-      <span className="mcounter__value" aria-label={`Counter value ${step?.counter ?? 0}`}>
+      <span className="mcounter__value">
+        <span className="sr-only">Counter value </span>
         {step?.counter ?? 0}
       </span>
-      <span className="mcounter__hist" aria-label="Counter history">
+      <span className="mcounter__hist">
         {upto.slice(-8).map((s, i) => (
           <span key={i} className="mcounter__h">
             <Glyph char={s.char!} /> →{s.counter}

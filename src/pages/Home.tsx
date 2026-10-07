@@ -133,8 +133,10 @@ export default function HomePage() {
               </div>
               <div className="ptile ptile--brand">
                 <dt>Quiz best score</dt>
-                <dd>{progress.quiz.runs ? `${progress.quiz.bestScore} / ${progress.quiz.bestTotal}` : '—'}</dd>
-                <span className="ptile__sub">{accuracy !== null ? `${accuracy}% accuracy overall` : 'No quiz yet'}</span>
+                <dd>
+                  {progress.quiz.runs ? `${progress.quiz.bestScore} / ${progress.quiz.bestTotal}` : '—'}
+                  <span className="ptile__sub">{accuracy !== null ? `${accuracy}% accuracy overall` : 'No quiz yet'}</span>
+                </dd>
               </div>
               <div className="ptile ptile--round">
                 <dt>Challenges</dt>
@@ -146,22 +148,24 @@ export default function HomePage() {
                 <dt>Streak</dt>
                 <dd>
                   <Icon name="flame" /> {progress.streak.current} day{progress.streak.current === 1 ? '' : 's'}
+                  <span className="ptile__sub">Best {progress.streak.best}</span>
                 </dd>
-                <span className="ptile__sub">Best {progress.streak.best}</span>
               </div>
               <div className="ptile">
                 <dt>Score</dt>
-                <dd>{score.total.toLocaleString()} pts</dd>
-                <span className="ptile__sub">
-                  lessons {score.lessons} · quiz {score.quiz} · challenges {score.challenges}
-                </span>
+                <dd>
+                  {score.total.toLocaleString()} pts
+                  <span className="ptile__sub">
+                    lessons {score.lessons} · quiz {score.quiz} · challenges {score.challenges}
+                  </span>
+                </dd>
               </div>
               <div className="ptile">
                 <dt>Predictions</dt>
                 <dd>
                   {progress.predictions.correct} / {progress.predictions.total}
+                  <span className="ptile__sub">correct</span>
                 </dd>
-                <span className="ptile__sub">correct</span>
               </div>
             </dl>
 

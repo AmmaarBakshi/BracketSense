@@ -187,7 +187,7 @@ export function Flowchart({ trace, index, className, compact }: FlowchartProps) 
     : 'Flowchart of the balanced-brackets algorithm. Not started.'
 
   return (
-    <div ref={scroller} className={['flowchart', compact ? 'flowchart--compact' : '', className ?? ''].filter(Boolean).join(' ')}>
+    <div ref={scroller} className={['flowchart', compact ? 'flowchart--compact' : '', className ?? ''].filter(Boolean).join(' ')} tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label} className="flowchart__svg">
         <defs>
           {(['base', 'trail', 'current'] as const).map((k) => (

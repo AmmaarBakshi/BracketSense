@@ -54,7 +54,7 @@ export default function VivaPage() {
               <input type="checkbox" checked={practice} onChange={(e) => setPractice(e.target.checked)} />
               <Icon name="target" /> Practice mode (hide answers, self-rate)
             </label>
-            <div className="viva__conf" aria-label="Confidence so far">
+            <div className="viva__conf" role="group" aria-label="Confidence so far">
               <span className="badge vconf--confident">
                 <Icon name="checkCircle" /> {confident} confident
               </span>

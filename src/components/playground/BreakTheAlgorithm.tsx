@@ -115,12 +115,13 @@ function TraceColumn({ title, result, truth, divStep, tone }: { title: string; r
           <Icon name={right ? 'check' : 'x'} /> Says {result.balanced ? 'balanced' : 'not balanced'} · {right ? 'correct' : 'wrong'}
         </span>
       </header>
-      <ol className="tcol__steps">
+      <ol className="tcol__steps" tabIndex={0} aria-label={`${title}: steps`}>
         {result.steps.map((s, i) => (
           <li key={i} className={`tcol__step ${!s.ok ? 'is-bad' : ''} ${i === divStep ? 'is-div' : ''}`}>
             <span className="tcol__char">{s.char === null ? <span className="badge">end</span> : <Glyph char={s.char} />}</span>
             <span className="tcol__action mono">{s.action}</span>
-            <span className="tcol__struct" aria-label={`${result.kind} contents`}>
+            <span className="tcol__struct">
+              <span className="sr-only">{result.kind} contents: </span>
               {result.kind === 'counter' ? (
                 <span className="mono">count {s.counter}</span>
               ) : s.structure.length ? (

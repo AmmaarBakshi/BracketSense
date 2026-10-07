@@ -129,6 +129,7 @@ export function StackView({ step, direction = 'jump', size = 'md', maxVisible = 
         {expanded && compact ? (
           <VirtualList
             className="stackview__scroll"
+            focusable
             count={total}
             itemSize={size === 'lg' ? 70 : size === 'sm' ? 38 : 52}
             role="list"
@@ -138,9 +139,14 @@ export function StackView({ step, direction = 'jump', size = 'md', maxVisible = 
               const item = all[all.length - 1 - i]
               return (
                 <div key={item.index} style={style} role="listitem" className="stackview__vrow">
-                  <div className={blockClass(item, i === 0)} aria-label={describe(item, i === 0)}>
-                    <span className="sblock__glyph">{item.char}</span>
-                    <span className="sblock__meta">{meta(item)}</span>
+                  <div className={blockClass(item, i === 0)}>
+                    <span className="sr-only">{describe(item, i === 0)}</span>
+                    <span className="sblock__glyph" aria-hidden="true">
+                      {item.char}
+                    </span>
+                    <span className="sblock__meta" aria-hidden="true">
+                      {meta(item)}
+                    </span>
                   </div>
                 </div>
               )

@@ -17,7 +17,7 @@ export function PseudocodePanel({ step, compact }: { step: TraceStep | null; com
   }, [current])
 
   return (
-    <ol ref={box} className={`pseudo ${compact ? 'pseudo--compact' : ''}`} aria-label="Pseudocode (report Algorithm 1)">
+    <ol ref={box} className={`pseudo ${compact ? 'pseudo--compact' : ''}`} aria-label="Pseudocode (report Algorithm 1)" tabIndex={0}>
       {PSEUDOCODE.map((line) => {
         const isCurrent = line.n === current
         const onPath = path.has(line.n)

@@ -28,7 +28,7 @@
 }
 
 .miniplayer__input .is-done {
-  opacity: 0.55;
+  color: var(--ink-3);
 }
 
 .miniplayer__input .is-current {

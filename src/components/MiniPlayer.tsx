@@ -17,7 +17,7 @@ export function MiniPlayer({ input, autoPlay, speed = 900 }: { input: string; au
 
   return (
     <div className="miniplayer">
-      <div className={`miniplayer__input ${long ? 'is-long' : ''}`} aria-label={`Input: ${input}`}>
+      <div className={`miniplayer__input ${long ? 'is-long' : ''}`} role="img" aria-label={`Input: ${input}`} tabIndex={long ? 0 : undefined}>
         {[...input].map((c, i) =>
           c === '\n' ? (
             <br key={i} />
